@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostsController extends Controller
 {
@@ -40,7 +40,27 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'des' => 'required',
+            'img' => 'required | mimes:jpg,png,jpeg | max:5048'
+        
+        ]);
+
+        $newImgName = uniqid() . '-' . $request->title . '.' . $request->img->extension();
+          $request->img->move(public_path('images'),$newImgName);
+
+          Post::create(
+              [
+                'title' => $request->input('title'),
+                'description' => $request->input('des'),
+                'slug' => SlugService::createSlug(Post::class,'slug',$request->title),
+                'image_path' => $newImgName,
+                'user_id' => auth()->user()->id
+              ]
+            );
+
+            return redirect('/blog')->with('message','post added');
     }
 
     /**
