@@ -33,15 +33,9 @@
 
 <textarea name="des" class="py-20 bg-transparent block border-b-2 w-full h-20 text-xl outline-none">{{ $post->description }}</textarea>
 
-<div class="bg-gray-lighter pt-15">
-    <label class="w-44 flex flex-col items-center px-2 py-3 bg-white-rounded-lg shadow-lg tracking-wide uppercase border border-blue-500 cursor-pointor">
-        <span class="mt-2 text-base leading-normal"> Select a File</span>
-        <input type="file" name="img" class="hidden"/>
-    </label>
-</div>
 
 <button type="submit" class="uppdercase mt-15 bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-   Submit Post
+   Update Post
 </button>
 </form>
 

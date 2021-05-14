@@ -30,7 +30,7 @@
 
 <div class="sm:grid grid-cols-3 gap-20 w-4/5 mx-auto py-15 bord border-blue-200 border-b">
  <div>
-       <img src="https://digitalnomadgirls.com/wp-content/uploads/2018/10/girl-on-laptop-website-digital-nomad-girls.jpg" alt="" />   
+       <img src="{{ asset('images/' . $post->image_path )}}" alt="" />   
     </div>
 <div>
     <h2 class="text-blue-500 font-bold text-5xl pb-4">{{ $post->title}}</h2>
@@ -50,6 +50,18 @@
             Edit
         </a>
         </span>
+
+         <span class="float-right">
+        <form action="/blog/{{ $post->slug }}" method="POST">
+        @csrf
+        @method('delete')
+        <button class="text-red-600 pr-3" type="submit">
+          Delete
+        </button>
+            
+        </form>
+        </span>
+
     @endif
 
 </div>
