@@ -33,16 +33,25 @@
        <img src="https://digitalnomadgirls.com/wp-content/uploads/2018/10/girl-on-laptop-website-digital-nomad-girls.jpg" alt="" />   
     </div>
 <div>
-<h2 class="text-blue-500 font-bold text-5xl pb-4">{{ $post->title}}</h2>
-<span class="text-blue-500">
-By <span class="font-bold italic text-blue-700">code with {{ $post->user->name}}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at))}}
-</span>
-<p class="text-xl text-blue-700 pt-8 pb-10 leading-8 font-light">
-{{ $post->description}}
-</p>
-<a href="/blog/{{ $post->slug }}" class="uppercase bg-blue-400 text-blue-900 text-lg font-extrabold py-4 px-8 rounded-3xl">
-Read more
- </a>
+    <h2 class="text-blue-500 font-bold text-5xl pb-4">{{ $post->title}}</h2>
+    <span class="text-blue-500">
+    By <span class="font-bold italic text-blue-700">code with {{ $post->user->name}}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at))}}
+    </span>
+    <p class="text-xl text-blue-700 pt-8 pb-10 leading-8 font-light">
+    {{ $post->description}}
+    </p>
+    <a href="/blog/{{ $post->slug }}" class="uppercase bg-blue-400 text-blue-900 text-lg font-extrabold py-4 px-8 rounded-3xl">
+    Read more
+    </a>
+
+    @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
+        <span class="float-right">
+        <a href="/blog/{{ $post->slug }}/edit" class="text-blue-700 italic hover:text-blue-500 pb-1 border-b-2">
+            Edit
+        </a>
+        </span>
+    @endif
+
 </div>
 </div>
     
